@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="other_world" tilewidth="32" tileheight="32">
+  <image source="game_tile.png" width="512" height="384"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3OMQ0AIBAEsJOFA3AA/pXwCR7IDx26dyYZtLAaHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA/3aDA88pFwj7hoBAnAAA
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2aW27DMAwEe83c/yKFgQYNUruxJS53KHMAoz8VSWmjByl9fV3n8fMpUNl1oe5PdfvZKPvTWlyn8jpSSY8ra3Z0v67aG/FfTYuMNns2sny3Hp/bj9rImE8uZmJ1tG0t9DaU/jLObBH5UmScWZrQtIj013poGJkrijhpuZx733DmDyqbM9DicaCsAzZN0zT79Lr7y+Pgy46BhqKOe+YjQInjFWJMmRD7T4wpC2LfiTFlknVvecXPapo4+x61X1I0idrzV/g9uuOKPH+1HnN+nTVQqh4bmXcdGflIa+K3P+rrjpq47vQi/88B9U6LfH6stK4QbFUaL6ePEahvGKnjdRbqb33GZ2VNKG+aIn1W1WPl95MVNXHURrL8tR55rDhHFHXuTFabI9R8M9pXFU2qxPkfq2hCj+8s1ee406eK6vtgps+MmkrrofXjrouttHa8UqkuRvCtpKIWBP8qiHqceSuwoh7UejEhn3e8b3fqcdSeoMUn38RcSlH/r5TDR88Zmh6V3xrNakO62xrpB02PGSjz69VO68Gw83j7m+l7NZz7h4PV49trv3qflShyF3J/n2TkhSOoznbEvu6RWXdX+VLme1k1jT2fSvsqu5lnqGxtiPWTI5vu+nFWPZB+z0bd95RE9PluY5aBe01o/lKl5nCndYx+f3AXHZ6Q+0uO7W5U1uLoHr1qbqM+/zlziixdiHckaj/v9q7eH5PfnkS0v2qH8Bsi5/+O8aHErIKQZ2bXIclU1GPGP12PDXfenzm2FfTYuLKnUvQYaVtFjw1X3Slzj1bcuaxGVA5zZnwIZ2YnVeM+YnROUMaBEscsK90LUuJwQxoHUiwu3DmbwkZ1SOeJinqQci2ynUyImtD1UNdcaJrQ9qIoe47cPsIWaQyjbLnzOtq9gXsdJdTsCTFE2nT1x30uoe3DzrYR7Wch3uO711+nJmo9svfW1iMWtxYKWxX87kFb+0lj46D1YHH3/jdNsybfLcO1GECcAAA=
+  </data>
+ </layer>
+</map>

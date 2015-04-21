@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="game_tile" tilewidth="32" tileheight="32">
+  <image source="game_tile.png" width="512" height="384"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3DwQkAAAwDoZs5+z8KnUPBVVNVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf8BQ4HiYkCcAAA=
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2b24rDMAwFA/n/f17CspCWJXFiXUbyGehj5SNNLm3qbpsQtuzZAcQH8sGC4sM7B6XPK2gZPfN41LauuZIPj/r0erPIB49KTrJ8RHqr5MO63pNau/Had2tVqZ9dK8pLlc9alFqVjmHP+qR7cJVj2HMNko8Dz+tXBSc0H394ff+lX7dW8hEF+T46AznbFVVzj3DVG7lvcjYvVuyZzopO6D3T81lD75eezwN6z5HPJwlU6XUVL9V6rJb3KRX7o2fet7nzmd7ff9Ayzzr4rlURUm7y77uRdL3Pd+ypMvIxx77pHpKJ9fzFc7rM36KH7+Nx5GVFBwdnZvZvdZtFNpolC/ngIBcs5IODXHCQCyGEEHfoXsEiYp9/1HOqLmTPRH4+0Qx4dHHy5rk+8dwkZTnIyEOaASnLAS1PBqQZkLJkQpkDJUc2lDlQcmRD2XskH79QZikfdsgHC/lgYbV/TtghHzzenie0Z0mdeDNbuaiPzikecsJETlh08tGll+xrl/X/ibqQ5UU+ronuST7uiexLPsaIun7JBwv5YCEfPKzm6PFffPp+QA+IPkbW6uqmoo/zmnJiV6PrPGfJ3EsgJ0wynk14vjrQqZdOyAkP6rlCzRUFqf/oPXuUvkeo+nsRfR/TzOfkSLK/E0RRIaPFetnvj1gjygll7713vxV80Obo2bN85NaKrG0B9dm319zIPqgu6HU9clW4vlDrWn9/p9aKqm91vyTVOderBv06PQMx0x0VMwshhCc/NOiclECcAAA=
+  </data>
+ </layer>
+</map>
