@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="game_tile" tilewidth="32" tileheight="32">
+  <image source="game_tile.png" width="512" height="384"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3UwQ2DMBBFQZeVDpIOUhn9hgsKoETc2G/tWBrJx2WfzDLGWAAAAAAAAAAAAAAAAAAAAIgz/tzRg+/RI0PXHs/VI9B2tvsrYFd3qN77VY99l+pd6aFHwnf/apIwlx7HUz2XHnrokfHtemTQI8tMPTo00SOLHln0yKJHlpl6VM+lhx7JPTo0maHH/l49W/ce53dSPZsefVqk9+j2NvTIk97D/ypvJj2yZureI40eebr0eAfsWg8AAAAAAAAAAAAAgDofyFPjT0CcAAA=
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3ZsQ2AMAwAwazF/osxQBDY2JFc3EkUNCn8EoSwFlHXw333RdzpeemRo8cseswSndffueqRo8csp/dJeuR0zst+t64yr8jc9ch5m1fHM0yPnK8eJ9dnp8csesxSeX9U12dX+a5wvtvP+dUsesxy+v+THgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQcwNKOyiCQJwAAA==
+  </data>
+ </layer>
+</map>

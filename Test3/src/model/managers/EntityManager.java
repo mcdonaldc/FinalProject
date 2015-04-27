@@ -26,6 +26,11 @@ public class EntityManager implements Iterable<Entity>{
 	public void addEntity( Entity e){
 		entities.add(e);
 	}
+	
+	public void removeEntity(Entity e){
+		entities.remove(e);
+	}
+	
 	public void addEntity(int pos, Entity e){
 		if(pos < 0){
 			entities.add(e);

@@ -9,7 +9,7 @@ import math.Vector2D;
 import model.World;
 import agentstates.AgentChaseTarget;
 import agentstates.AgentStateMachine;
-import agentstates.RestState;
+import agentstates.EatState;
 import model.pathfinding.NavGraph;
 import model.pathfinding.PathFinderHolder;
 
@@ -18,7 +18,8 @@ public class Agent extends MovingEntity {
 	private Point2D startLoc;
 	private AgentStateMachine my_state_machine;
 	
-	public int fatigue;
+	public int health;
+	public int numPasses;
 	public int hunger;
 	public double sight;
 	private PathFinderHolder pathing;
@@ -28,12 +29,11 @@ public class Agent extends MovingEntity {
 		super(initX, initY, r, velocity, myWorld, graph);
 		startLoc = new Point2D(initX, initY);
 		my_state_machine = new AgentStateMachine(this);
-		
-		
+		numPasses = 0;
+		health = 3;
 		setPathing(new PathFinderHolder(new AStarPathFinder(my_nav , Integer.MAX_VALUE, true), this));
 		this.sight = sight;
-		//begin rest
-		my_state_machine.ChangeState(new RestState());
+		my_state_machine.ChangeState(new EatState());
 		
 	}
 

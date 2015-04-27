@@ -19,7 +19,7 @@ public class EatState extends AgentState {
 		//log
 		ConsoleLog.getInstance().log("Agent: " + e.getId() + " is going to eat" );
 		
-		Point2D[] eat_locs = {new Point2D(14,8)} ;
+		Point2D[] eat_locs = {new Point2D(98,80)} ;
 		int min = Integer.MAX_VALUE;
 		Path best_path = null;
 		for(Point2D eat_loc : eat_locs){
@@ -53,7 +53,7 @@ public class EatState extends AgentState {
 
 	@Override
 	public Vector2D computeHeading(Agent e) {
-		//do not move while resting
+		//do not move while eating
 		return new Vector2D(0,0);
 	}
 
@@ -66,12 +66,12 @@ public class EatState extends AgentState {
 
 	@Override
 	public void resetToStart(Agent e) {
-		Point2D[] eat_locs = {new Point2D(14,43), new Point2D(8,74), new Point2D(87,96)} ;
+		Point2D[] eat_locs = {new Point2D(98,80)} ;
 		int min = Integer.MAX_VALUE;
 		Path best_path = null;
 		for(Point2D eat_loc : eat_locs){
 			e.getPathing().generatePath(eat_loc);
-			ConsoleLog.getInstance().log("Distance to rest location: " + eat_loc + " " + 
+			ConsoleLog.getInstance().log("Distance to eat location: " + eat_loc + " " + 
 					e.getPathing().getPath_finder().getSearchDistance());
 			if(e.getPathing().getPath_finder().getSearchDistance() < min){
 				min = e.getPathing().getPath_finder().getSearchDistance();

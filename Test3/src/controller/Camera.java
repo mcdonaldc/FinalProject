@@ -121,7 +121,7 @@ public class Camera {
 	}
 
 	/**
-	 * draws the part of the map which is currently focussed by the camera on
+	 * draws the part of the map which is currently focused by the camera on
 	 * the screen
 	 */
 	public void drawMap() {

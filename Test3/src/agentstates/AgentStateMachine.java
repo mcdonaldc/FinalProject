@@ -13,7 +13,7 @@ public class AgentStateMachine {
 	public AgentStateMachine(Agent agent)
 	{
 		cur_agent = agent;
-		currentstate = new AgentChaseTarget();
+		currentstate = new EatState();
 	}
 	
 	public void SetCurrentState(AgentState as)

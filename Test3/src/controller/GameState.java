@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import math.Point2D;
 import model.World;
@@ -14,20 +15,25 @@ import model.entities.Agent;
 import model.entities.Entity;
 import model.entities.Player;
 import model.entities.Gem;
+import model.entities.Tower;
 import model.managers.ConsoleLog;
 import model.managers.EntityManager;
 import model.pathfinding.NavGraph;
 
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.MouseListener;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
+import agentstates.EatState;
+import agentstates.WanderState;
 import view.ConsoleView;
 import view.CoordinateTranslator;
 import view.NavGV;
@@ -44,10 +50,10 @@ public class GameState extends BasicGameState {
 	private boolean showGraph;
 	private ConsoleView consoleView;
 
+	private ArrayList<Agent> agents = new ArrayList<Agent>();
+	
 	private Music music;
 	private World world;
-	private Player player;
-	private Gem prize;
 	private CoordinateTranslator translator;
 	private SpriteRenderer spriteRender;
 	
@@ -93,44 +99,40 @@ public class GameState extends BasicGameState {
 		world.getWorldH(), camera.mapWidth, camera.mapHeight, (int)camera.cameraX, (int)camera.cameraY);
 		spriteRender = new SpriteRenderer(translator);
 		
-		player = new Player(50, 50, .5, .01, world, mygraph);
-		Agent agent1 = new Agent(40.0, 40.0, .75, .005, 25.0, world, mygraph);
-		Agent agent2 = new Agent(50.0, 40.0, .75, .005, 25.0, world, mygraph);
-		Agent agent3 = new Agent(60.0, 40.0, .75, .005, 25.0, world, mygraph);
+		Agent agent1 = new Agent(78.0, 99.0, .75, .005, 25.0, world, mygraph);
+		Agent agent2 = new Agent(78.0, 99.0, .75, .005, 25.0, world, mygraph);
+		Agent agent3 = new Agent(78.0, 99.0, .75, .005, 25.0, world, mygraph);
+
+		agents.add(agent1);
+		agents.add(agent2);
+		agents.add(agent3);
 		
-		agent1.setTarget(player);
-		agent2.setTarget(player);
-		agent3.setTarget(player);
-		
-		prize = new Gem(50, 60, .5, world, mygraph);
 		EntityManager e = EntityManager.getInstance();
-		e.addEntity(player);
 		e.addEntity(agent1);
 		e.addEntity(agent2);
 		e.addEntity(agent3);
-		e.addEntity(prize);
 		
-		music = new Music("src/Super_Mario_Bros.ogg");
+		
+		//music = new Music("src/Super_Mario_Bros.ogg");
 
-		music.setVolume(0.5f);
+		//music.setVolume(0.5f);
 
-		music.loop();
+		//music.loop();
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame game, Graphics g)
 			throws SlickException {
-		// first center camera on player
-		Point p = translator.worldToScreen(player.getX(), player.getY());
+
+		Point p = translator.worldToScreen(world.getWorldW(), world.getWorldH());
 		camera.centerOn((float) p.x, (float) p.y);
 		camera.drawMap();
 		// then draw all entities
 		camera.translateGraphics();
 		for (Entity e : EntityManager.getInstance()) {
-			spriteRender.render(e, gc, g);
+			spriteRender.render(e, gc, g);	
 		}
-		
-		
+			
 		Color[] agent_colors = {Color.magenta, Color.black, Color.yellow};
 		int cur = 0;
 		for (Entity e : EntityManager.getInstance()) {
@@ -139,23 +141,10 @@ public class GameState extends BasicGameState {
 				myview.renderAgentPath((Agent)e, agent_colors[cur], gc, g);
 				cur++;
 			}
-			if(showGraph && e instanceof Agent){
-				myview.render(gc, g);
-			}
 			
 		}
 		camera.untranslateGraphics();
 			
-		// now draw all UI elements
-		DecimalFormat df = new DecimalFormat("0.00");
-		String x = df.format(player.getX());
-		String y = df.format(player.getY());
-		g.drawString("World Coordinates: (" + x + ", " + y + ")", 100, 0);
-		x = df.format(p.x - camera.cameraX);
-		y = df.format(p.y - camera.cameraY);
-		g.drawString("Screen Coordinates: (" + x + ", " + y + ")", 400, 0);
-		g.drawString("Gem located at: " +prize.getX()+ ", "+prize.getY(),200, 15);
-		
 		if(showLog)
 		{
 			consoleView.render(ConsoleLog.getInstance(),gc, g);
@@ -166,39 +155,42 @@ public class GameState extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame game, int t)
 			throws SlickException {
+		
+		if(Mouse.isButtonDown(0))
+		{
+			int x = Mouse.getX();
+			int y = Mouse.getY();
+			
+			Point2D p = translator.screenToWorld(x, y);
+			double distanceToAdd = 0;
+			distanceToAdd = p.getY() - 81;
+			
+			EntityManager.getInstance().addEntity(new Tower(75+p.getX(), 100-distanceToAdd, .75, 25, world, mygraph));
+		}
+		
 		for (Entity e : EntityManager.getInstance()) {
+			
 			e.update(t);
 		}
-		spriteRender.updateAnims(t);
-		//if player caught prize, move it to location on the screen
-		if(prize.caught){
-			
-			int newX = (int) (map.getWidth() * Math.random()*32  /*camera.cameraX*/);
-			int newY = (int)(map.getHeight() * Math.random()*32  /*camera.cameraY*/);
-			Point2D newPoint = translator.screenToWorld(newX,newY);
-			prize.setLoc(newPoint);
-			prize.caught = false;
-			
-			if(player.getPoints() == 6){
-				game.enterState(1);
+		
+		for(Agent a : agents)
+		{
+			if(a.getY() < 82)
+			{
+				a.setLoc(new Point2D(78.0, 99.0));
+				a.getMy_state_machine().ChangeState(new EatState());
+				a.numPasses++;
 			}
+			
+			
 		}
-		if(player.getDeaths() == 7){
-			game.enterState(2);
-		}
+		spriteRender.updateAnims(t);
+		
+		
 	}
 
 	@Override
 	public void keyPressed(int key, char c) {
-		if(c== '1'){
-			if(showGraph)
-			{
-				showGraph = false;
-			}
-			else{
-				showGraph = true;
-			}
-		}
 		
 		if(c == '2'){
 			if(showPath){
@@ -208,47 +200,6 @@ public class GameState extends BasicGameState {
 				showPath = true;
 		
 			}
-		}
-		
-		if (c == 'd') {
-			try {
-				i = new Image("res/mario_right.png");
-			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			spriteRender.setupSprites(i);
-			player.moveRight = true;
-		}
-		if (c == 'a') {
-			try {
-				i = new Image("res/mario_left.png");
-			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			spriteRender.setupSprites(i);
-			player.moveLeft = true;
-		}
-		if (c == 's') {
-			try {
-				i = new Image("res/mario_back.png");
-			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			spriteRender.setupSprites(i);
-			player.moveDown = true;
-		}
-		if (c == 'w') {
-			try {
-				i = new Image("res/mario_forward.png");
-			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			spriteRender.setupSprites(i);
-			player.moveUp = true;
 		}
 		
 		if (c == '`'){
@@ -261,20 +212,6 @@ public class GameState extends BasicGameState {
 		}
 	}
 
-	@Override
-	public void keyReleased(int key, char c) {
-		if (c == 'd') {
-			player.moveRight = false;
-		}
-		if (c == 'a') {
-			player.moveLeft = false;
-		}
-		if (c == 's') {
-			player.moveDown = false;
-		}
-		if (c == 'w') {
-			player.moveUp = false;
-		}
-	}
+
 
 }

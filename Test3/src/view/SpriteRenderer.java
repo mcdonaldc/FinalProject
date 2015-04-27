@@ -11,28 +11,27 @@ import org.newdawn.slick.SlickException;
 
 
 
+
 import model.entities.Agent;
 import model.entities.Entity;
 import model.entities.Player;
 import model.entities.Gem;
+import model.entities.Tower;
 
 public class SpriteRenderer {
 	
 	private CoordinateTranslator convert;
-	private Animation mario;
 	private Animation goomba;
-	private Image playerImg;
 	private Image agentImg;
-	private Image prizeImg;
+	private Image towerImg;
 	
 	public SpriteRenderer(CoordinateTranslator convert){
 		this.convert = convert;
 		try {
-			playerImg = new Image("/res/mario_forward.png");
-			agentImg = new Image("/res/goomba_move.png");
-			prizeImg = new Image("/res/gem.png");
 			
-			mario = getAnimation(playerImg, 3, 1, 45, 57, 3, 150);
+			agentImg = new Image("/res/goomba_move.png");
+			towerImg = new Image("/res/tower.png");
+			
 			goomba = getAnimation(agentImg,3, 1, 22, 25, 3, 150);
 			
 		} catch (SlickException e) {
@@ -42,18 +41,16 @@ public class SpriteRenderer {
 	
 	public void setupSprites(Image i)
 	{
-		playerImg = i;
-		mario = getAnimation(playerImg, 3, 1, 45, 57, 3, 150);
+		
 	}
 	
 	public void render(Entity e, GameContainer gc, Graphics g){
-		if(e instanceof Player){
-			renderH((Player)e, gc, g);
-		}else if(e instanceof Agent){
+		if(e instanceof Agent){
 			renderH((Agent)e,gc,g);
-		}else if(e instanceof Gem){
-			renderH((Gem)e, gc, g);
+		}else if(e instanceof Tower){
+			renderH((Tower)e, gc, g);
 		}
+			
 	}
 
 	private void drawChar(Image i, Entity e){
@@ -65,7 +62,7 @@ public class SpriteRenderer {
 	public void updateAnims(int t)
 	{
 		goomba.update(t);
-		mario.update(t);
+
 	}
 	
 	private void drawEnemy(Image i, Entity e){
@@ -80,11 +77,10 @@ public class SpriteRenderer {
 	private void renderH(Agent e, GameContainer gc, Graphics g) {
 		drawEnemy(goomba.getCurrentFrame(),e);
 	}
-	private void renderH(Player e, GameContainer gc, Graphics g) {
-		drawChar(mario.getCurrentFrame(), e);
-	}
-	private void renderH(Gem e, GameContainer gc, Graphics g) {
-		drawChar(prizeImg, e);
+
+	
+	private void renderH(Tower e, GameContainer gc, Graphics g) {
+		drawChar(towerImg, e);
 	}
 	
 	public Animation getAnimation (Image i , int spX, int spY , int sW , int sH, int frames, int dur)

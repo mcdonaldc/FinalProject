@@ -14,14 +14,10 @@ public class AgentChaseTarget extends AgentState {
 	@Override
 	public void execute(Agent e, int delta) {
 		// get hungrier and more tired
-		e.fatigue -= delta;
+
 		e.hunger -= delta;
 		
-	
-		if(e.fatigue < 0){
-			e.getMy_state_machine().ChangeState(new RestState());
-		}
-		
+
 		
 		if(e.hunger < 0){
 			e.getMy_state_machine().ChangeState(new EatState());
