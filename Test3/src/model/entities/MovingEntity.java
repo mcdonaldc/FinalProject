@@ -10,9 +10,7 @@ public abstract class MovingEntity extends Entity {
 	protected double speed;
 	protected Vector2D velocity;
 	
-	
-	
-	public MovingEntity(double initX, double initY, double r, double speed,World myWorld,
+	public MovingEntity(double initX, double initY, double r, double speed, World myWorld,
 			NavGraph graph) {
 		super(initX, initY,r, myWorld, graph);
 		this.speed = speed;
@@ -24,6 +22,7 @@ public abstract class MovingEntity extends Entity {
 			v.normalize();
 			velocity = v.times(speed * delta);
 			Point2D newLoc = new Point2D(loc.getX() + velocity.getX(),loc.getY() + velocity.getY());
+			
 			if(!my_nav.blocked(newLoc)){
 				loc.set(newLoc);
 			}

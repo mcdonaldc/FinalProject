@@ -17,15 +17,15 @@ public class EatState extends AgentState {
 	@Override
 	public void enter(Agent e) {
 		//log
-		ConsoleLog.getInstance().log("Agent: " + e.getId() + " is going to eat" );
+		//ConsoleLog.getInstance().log("Agent: " + e.getId() + " is going to eat" );
 		
 		Point2D[] eat_locs = {new Point2D(98,80)} ;
 		int min = Integer.MAX_VALUE;
 		Path best_path = null;
 		for(Point2D eat_loc : eat_locs){
 			e.getPathing().generatePath(eat_loc);
-			ConsoleLog.getInstance().log("Distance to eat location: " + eat_loc + " " + 
-					e.getPathing().getPath_finder().getSearchDistance());
+			//ConsoleLog.getInstance().log("Distance to eat location: " + eat_loc + " " + 
+					//e.getPathing().getPath_finder().getSearchDistance());
 			if(e.getPathing().getPath_finder().getSearchDistance() < min){
 				min = e.getPathing().getPath_finder().getSearchDistance();
 				best_path = e.getPathing().getCur_path();

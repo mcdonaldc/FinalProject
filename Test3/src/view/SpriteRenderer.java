@@ -8,14 +8,9 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-
-
-
-
 import model.entities.Agent;
+import model.entities.Ammunition;
 import model.entities.Entity;
-import model.entities.Player;
-import model.entities.Gem;
 import model.entities.Tower;
 
 public class SpriteRenderer {
@@ -24,6 +19,7 @@ public class SpriteRenderer {
 	private Animation goomba;
 	private Image agentImg;
 	private Image towerImg;
+	private Image ammoImg;
 	
 	public SpriteRenderer(CoordinateTranslator convert){
 		this.convert = convert;
@@ -31,6 +27,7 @@ public class SpriteRenderer {
 			
 			agentImg = new Image("/res/goomba_move.png");
 			towerImg = new Image("/res/tower.png");
+			ammoImg = new Image("/res/ammo.png");
 			
 			goomba = getAnimation(agentImg,3, 1, 22, 25, 3, 150);
 			
@@ -49,6 +46,9 @@ public class SpriteRenderer {
 			renderH((Agent)e,gc,g);
 		}else if(e instanceof Tower){
 			renderH((Tower)e, gc, g);
+		}
+		else if(e instanceof Ammunition){
+			renderH((Ammunition)e, gc, g);
 		}
 			
 	}
@@ -77,10 +77,13 @@ public class SpriteRenderer {
 	private void renderH(Agent e, GameContainer gc, Graphics g) {
 		drawEnemy(goomba.getCurrentFrame(),e);
 	}
-
 	
 	private void renderH(Tower e, GameContainer gc, Graphics g) {
 		drawChar(towerImg, e);
+	}
+	
+	private void renderH(Ammunition e, GameContainer gc, Graphics g) {
+		drawChar(ammoImg, e);
 	}
 	
 	public Animation getAnimation (Image i , int spX, int spY , int sW , int sH, int frames, int dur)

@@ -62,10 +62,6 @@ public class Player extends MovingEntity {
 						e.resetToStart();
 						numDeaths++;
 					}
-					if(e instanceof Gem){
-						((Gem) e).catchIt();
-						numPoints++;
-					}
 				}
 			}
 		}

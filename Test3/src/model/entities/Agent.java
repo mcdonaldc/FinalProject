@@ -30,7 +30,7 @@ public class Agent extends MovingEntity {
 		startLoc = new Point2D(initX, initY);
 		my_state_machine = new AgentStateMachine(this);
 		numPasses = 0;
-		health = 3;
+		health = 8000;
 		setPathing(new PathFinderHolder(new AStarPathFinder(my_nav , Integer.MAX_VALUE, true), this));
 		this.sight = sight;
 		my_state_machine.ChangeState(new EatState());
@@ -61,6 +61,7 @@ public class Agent extends MovingEntity {
 	public PathFinderHolder getPathing() {
 		return pathing;
 	}
+
 
 	public void setPathing(PathFinderHolder pathing) {
 		this.pathing = pathing;

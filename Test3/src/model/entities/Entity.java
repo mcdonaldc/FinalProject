@@ -13,7 +13,7 @@ public abstract class Entity implements Mover {
 	private static int nextId;
 	
 	protected Point2D loc;
-	protected double direction;
+	public double direction;
 	protected double radius;
 	public World myWorld;
 	
